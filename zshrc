@@ -85,34 +85,29 @@ export TERM=xterm-256color
 # For a full list of active aliases, run `alias`.
 #
 #
-# Basic
+# Basic Customization
 tmux new-session -A -s Basic
 alias l.='ls -lh .*'
-#
-#
-# Congigurations
 alias zshconfig="vim ~/.zshrc"
 alias vimconfig="vim ~/.vimrc"
+alias vimplugconfig="vim ~/.vimrc.bundles"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias cl="printf '\33c\e[3J'"
-
-alias FLAKE8_IGNORE_FLAG='E225,W503,H405,H306,H301,H201,H404,H101'
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+alias FLAKE8_IGNORE_FLAG='E225,W503,H405,H306,H301,H201,H404,H101'
 
-# Backend Dedelop
-alias redb="dropdb dev_unittest_interstellar && createdb dev_unittest_interstellar"
-alias deploy-beta1='python3 deploy.py -H alta1-pi-interstellar-1.vm.elenet.me -i https://pypi.douban.com/simple -u rancho --restart -d dirty --rebuild-testing'
-alias ssh-interstellar='ssh alta1-pi-interstellar-1.vm.elenet.me'
+# pyenv
 export GPG_TTY=$(tty)
 export PYENV_VIRTUALENV_DISABLE_PROMPT=0
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
-_PYENV_NAME=$(pyenv version-name)
-if [[ $_PYENV_NAME == "system" ]]; then
-    _PYENV_NAME=""
-else
-    _PYENV_NAME="(${_PYENV_NAME}) "
-fi
-PS1="${_PYENV_NAME}${PS1}"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# Backend daily 
+alias ssh-interstellar='ssh alta1-pi-interstellar-1.vm.elenet.me'
+alias deploy-beta1='python3 deploy.py -H alta1-pi-interstellar-1.vm.elenet.me -i https://pypi.douban.com/simple -u rancho --restart -d dirty --rebuild-testing'
+alias redb="dropdb dev_unittest_interstellar && createdb dev_unittest_interstellar"
+
 
