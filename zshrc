@@ -83,31 +83,34 @@ export TERM=xterm-256color
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-#
-# Basic Customization
-tmux new-session -A -s Basic
-alias l.='ls -lh .*'
-alias zshconfig="vim ~/.zshrc"
-alias vimconfig="vim ~/.vimrc"
-alias vimplugconfig="vim ~/.vimrc.bundles"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-alias cl="printf '\33c\e[3J'"
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-alias FLAKE8_IGNORE_FLAG='E225,W503,H405,H306,H301,H201,H404,H101'
 
-# pyenv
+
+#### Customization
+## basic
+alias l.='ls -lh .*'
+alias cl="printf '\33c\e[3J'"
+alias zconfig="vim ~/.zshrc"
+alias vconfig="vim ~/.vimrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias vplugconfig="vim ~/.vimrc.bundles"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+## enviroment vars
 export GPG_TTY=$(tty)
-export PYENV_VIRTUALENV_DISABLE_PROMPT=0
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=0
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+export HOMEBREW_GITHUB_API_TOKEN="75c29892065651395a1b14cad21789fb275f2113"
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# Backend daily 
+# Enterprice Related
 alias ssh-interstellar='ssh alta1-pi-interstellar-1.vm.elenet.me'
-alias deploy-beta1='python3 deploy.py -H alta1-pi-interstellar-1.vm.elenet.me -i https://pypi.douban.com/simple -u rancho --restart -d dirty --rebuild-testing'
 alias redb="dropdb dev_unittest_interstellar && createdb dev_unittest_interstellar"
+alias deploy-beta1='python3 deploy.py -H alta1-pi-interstellar-1.vm.elenet.me -i https://pypi.douban.com/simple -u rancho --restart -d dirty --rebuild-testing'
 
-
+#### Customization Ended and start tmux ####
+tmux new-session -A -s Basic
